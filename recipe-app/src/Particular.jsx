@@ -10,7 +10,7 @@ export default function Particular() {
     useEffect(() => {
         const dat = async () => {
             const headers = { "Authorization": localStorage.getItem('token') }
-            const res = await axios.get('http://localhost:3000/posts/getingDa', { headers })
+            const res = await axios.get('https://recip-backend-l4aj.onrender.com/posts/getingDa', { headers })
             const fil = res.data.filter((e)=>par.id ===e._id)
             setState(fil)
             console.log(res.data)
@@ -21,11 +21,11 @@ export default function Particular() {
         setState2(e)
     }
     const redir =()=>{
-        nav('/home',{replace:false})
+        nav('/home',{replace:true})
     }
   return (
     <div className='separee'>
-        <h3 onClick={redir} style={{color:'blue',cursor:'pointer',marginLeft:0}}>Click Logo to Reach Home page</h3>
+        <h3 onClick={redir} style={{color:'blue',cursor:'pointer',marginLeft:0}}>Click here to Reach Home page</h3>
         {
             state.map((e,i)=>{
                 return(
@@ -40,7 +40,7 @@ export default function Particular() {
             })
         }
         <h1>you can see Ingredients or Instructions here if you click anyone of the button</h1>
-        <div>
+        <div style={{fontSize:'25px',color:'whitesmoke'}}>
             {state2}
         </div>
     </div>

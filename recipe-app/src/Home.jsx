@@ -9,9 +9,12 @@ export default function Home() {
     useEffect(() => {
         const dat = async () => {
             const headers = { "Authorization": localStorage.getItem('token') }
-            const res = await axios.get('http://localhost:3000/posts/getingDa', { headers })
-            setState(res.data)
-            console.log(res.data)
+            const res = await axios.get('https://recip-backend-l4aj.onrender.com/posts/getingDa', { headers })
+            if(res.data ==='jwt must be provided'){
+                nav('/')
+            }else{
+                setState(res.data)
+            }
         }
         dat()
     }, [])
@@ -30,25 +33,30 @@ export default function Home() {
     }
     return (
         <div>
-            <h3 onClick={redir} style={{color:'blue',cursor:'pointer',marginLeft:0}}>Click Logo to log Out</h3>
+            <h3 onClick={redir} style={{color:'darkblue',cursor:'pointer',marginLeft:'30px',marginTop:'40px'}}>Click here to log Out</h3>
             <div className='inner'>
-                <input type="text" onChange={(e)=>setsearch(e.target.value)}/>
+                <input type="text" onChange={(e)=>setsearch(e.target.value)} placeholder="Search by Full Title Name..." style={{fontSize:'30px'}}/>
                 <div style={{marginTop:'50px'}} className='new'>
                     <button onClick={hand}>New!!!</button>
                 </div>
+                <h1 style={{marginLeft:'40px'}}>All Recipes</h1>
                 {filter.length==0?<div className='flexes'>
                     {state.map((e, i) => {
                         return (
-                            <div key={i}>
-                                <a href={`/recip/${e._id}`}><img src={e.Img} /></a>
+                            <div key={i} style={{position:'relative',marginTop:'20px'}}>
+                                <a href={`/recip/${e._id}`}><img src={e.Img} />
+                                 <p style={{textAlign:'center',position:'absolute',top:"200px",left:'200px',color:'whitesmoke',fontSize:'30px'}}>{e.Author}</p>
+                                </a>
                             </div>
                         )
                     })}
                 </div>:<div className='flexes'>
                     {filter.map((e, i) => {
                         return (
-                            <div key={i}>
-                                <a href={`/recip/${e._id}`}><img src={e.Img} /></a>
+                            <div key={i} style={{position:'relative'}}>
+                                <a href={`/recip/${e._id}`} ><img  src={e.Img} />
+                                <p style={{textAlign:'center',position:'absolute',top:"200px",left:'230px',color:'whitesmoke',fontSize:'30px'}}>{e.Author}</p>
+                                </a>
                             </div>
                         )
                     })}
