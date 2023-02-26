@@ -45,7 +45,7 @@ export default function Home() {
                         return (
                             <div key={i} style={{position:'relative',marginTop:'20px'}}>
                                 <a href={`/recip/${e._id}`}><img src={e.Img} />
-                                 <p style={{textAlign:'center',position:'absolute',top:"200px",left:'200px',color:'whitesmoke',fontSize:'30px'}}>{e.Author}</p>
+                                 <p style={{textAlign:'center',position:'absolute',top:"200px",left:'200px',color:'whitesmoke',fontSize:'30px'}}>{e.Title}</p>
                                 </a>
                             </div>
                         )
@@ -55,7 +55,7 @@ export default function Home() {
                         return (
                             <div key={i} style={{position:'relative'}}>
                                 <a href={`/recip/${e._id}`} ><img  src={e.Img} />
-                                <p style={{textAlign:'center',position:'absolute',top:"200px",left:'230px',color:'whitesmoke',fontSize:'30px'}}>{e.Author}</p>
+                                <p style={{textAlign:'center',position:'absolute',top:"200px",left:'230px',color:'whitesmoke',fontSize:'30px'}}>{e.Title}</p>
                                 </a>
                             </div>
                         )
